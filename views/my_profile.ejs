@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my profile</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+      /* Custom styles to position the fixed bottom links */
+      .fixed-bottom {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    </style>
+    <!-- Include jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body class="bg-gray-100 font-sans text-gray-800"> <!-- Applying font family and text color -->
+  <div class="container mx-auto px-4">
+    <!-- Submit a Secret button -->
+    <button id="submit-btn" class="text-blue-500 font-bold">Submit a Secret</button> <!-- Applying font weight and color -->
+    <br><hr>
+    <!-- Logout button -->
+    <button id="logout-btn" class="text-red-500 font-bold">Logout</button> <!-- Applying font weight and color -->
+    <br><hr>
+    
+
+    <!-- Content area -->
+    <div id="content-area" class="mb-24">
+ 
+    </div>
+
+    <!-- Fixed bottom links -->
+    <div class="fixed-bottom">
+      <!-- Dashboard button -->
+      <button id="dashboard-btn" class="mr-4 text-blue-500 font-bold">Dashboard</button> <!-- Applying font weight and color -->
+      <!-- My Posts button -->
+      <button id="my-posts-btn" class="text-blue-500 font-bold">My Posts</button> <!-- Applying font weight and color -->
+    </div>
+  </div>
+
+  <!-- Frontend JavaScript -->
+  <script>
+    $(document).ready(function() {
+      // Function to fetch and render dashboard content
+      const renderDashboardContent = () => {
+        $.get('/dashboard', function(data) {
+          $('#content-area').html(data);
+          // Re-attach event listeners after rendering new content
+          attachLikeButtonListener();
+        });
+      };
+
+      // Function to fetch and render my_posts content
+      const renderMyPostsContent = () => {
+        $.get('/my_posts', function(data) {
+          $('#content-area').html(data);
+          // Re-attach event listeners after rendering new content
+          attachLikeButtonListener();
+        });
+      };
+
+      // Attach event listeners to the Dashboard, My Posts, Submit a Secret, and Logout buttons
+      $('#dashboard-btn').click(function(event) {
+        event.preventDefault(); // Prevent default behavior
+        renderDashboardContent(); // Render dashboard content
+      });
+
+      $('#my-posts-btn').click(function(event) {
+        event.preventDefault(); // Prevent default behavior
+        renderMyPostsContent(); // Render my_posts content
+      });
+
+      $('#submit-btn').click(function(event) {
+        event.preventDefault(); // Prevent default behavior
+        window.location.href = "/submit"; // Redirect to submit page
+      });
+
+      $('#logout-btn').click(function(event) {
+        event.preventDefault(); // Prevent default behavior
+        window.location.href = "/logout"; // Redirect to logout route
+      });
+
+      // Attach event listener for like buttons
+      function attachLikeButtonListener() {
+        $('.like-btn').off('click'); // Remove previous event listeners to avoid duplication
+        $('.like-btn').on('click', function() {
+          var button = $(this);
+          var index = button.data('index');
+
+          $.ajax({
+            url: '/like/' + index, // Backend route for liking a post
+            type: 'POST', // HTTP method
+            success: function(data) {
+              console.log("Success:", data); // Log response from server
+              // Update the like count without refreshing the page
+              button.siblings('.like-count').text(data.likes);
+            },
+            error: function(xhr, status, error) {
+              console.error('Error:', error); // Log any errors
+            }
+          });
+        });
+      }
+
+      // By default, render the dashboard content when the page loads
+      renderDashboardContent();
+    });
+  </script>
+</body>
+</html>

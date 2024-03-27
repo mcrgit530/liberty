@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Posts</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Apply the same hover effect as the dashboard items */
+        .my-posts-item:hover {
+            box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+        /* Apply font styling */
+        .my-posts-text {
+            font-family: 'Arial', sans-serif; /* Specify the desired font family */
+            font-size: 16px; /* Specify the font size */
+            color: #333; /* Specify the text color */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans text-gray-800">
+    <h1 class="text-3xl font-bold mb-4">My Posts</h1>
+    <ul class="container mx-auto">
+        <% entries.forEach((entry, index) => { %>
+            <li class="my-4 p-4 border border-gray-300 rounded-md my-posts-item"> <!-- Apply the custom hover effect class -->
+                <div class="flex justify-between items-center">
+                    <div class="mr-4 my-posts-text"> <!-- Apply font styling class to the text -->
+                        <%= entry.text %>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="mr-2"><%= entry.time.toLocaleString() %></span>
+                        <form action="/delete/<%=index%>" method="get" onsubmit="return confirm('Are you sure you want to delete this entry?');">
+                            <button class="delete-btn bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </li>
+        <% }); %>
+    </ul>
+</body>
+</html>

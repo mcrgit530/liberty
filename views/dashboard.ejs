@@ -1,0 +1,104 @@
+<!-- dashboard.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Animation for like button */
+        .like-btn {
+            background-size: cover;
+            width: 24px;
+            height: 24px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+            background-image: url('https://t3.ftcdn.net/jpg/03/21/22/56/360_F_321225614_eUlLLhZXqwbjEYVEeSTnf6vV3PYo1DzV.jpg'); /* White heart image */
+        }
+        .like-btn.red-heart {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png'); /* Red heart image */
+        }
+        .like-btn.clicked {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans text-gray-800"> <!-- Applying font family and text color -->
+  <div class="container mx-auto px-4">
+    <h1 class="mt-8 mb-4 text-3xl font-semibold text-blue-900">Complaints</h1> <!-- Increased font weight -->
+
+    <!-- Content area -->
+    <ul class="space-y-4">
+        <% secrets.forEach((secret) => { %>
+            <li class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition duration-300"> <!-- Tailwind classes for post block -->
+                <div class="flex items-center justify-between mb-2"> <!-- Aligning text and time -->
+                    <div>
+                        <strong class="text-lg font-semibold"><%= secret.text %></strong> <!-- Increased font weight -->
+                        <em class="text-sm text-gray-600 block"><%= secret.time.toLocaleString() %></em> <!-- Positioning time below text -->
+                    </div>
+                    <div>
+                        <!-- Use data attributes to store the index -->
+                        <button class="like-btn focus:outline-none <%= secret.ids.includes(googleId) ? 'red-heart' : '' %>" data-index="<%= secret.index %>"></button> <!-- Initial state with white heart -->
+                        <!-- Display the like count -->
+                        <span class="like-count ml-2"><%= secret.likes %></span>
+                    </div>
+                </div>
+            </li>
+        <% }); %>
+    </ul> 
+
+    <!-- Include jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        // Function to attach event listeners to like buttons
+        // Function to attach event listeners to like buttons
+// Function to attach event listeners to like buttons
+// Function to attach event listeners to like buttons
+    function attachLikeButtonListener() {
+        // Attach event listener to like buttons
+        $('.like-btn').off('click').on('click', function() {
+            var button = $(this);
+            var index = button.data('index');
+        
+            // Check if button is already clicked to prevent multiple animations
+            if (!button.hasClass('clicked')) {
+                // Toggle animation class
+                button.addClass('clicked');
+                // Toggle between white and red heart
+                button.toggleClass('red-heart');
+                // Trigger animation
+                setTimeout(function() {
+                    button.removeClass('clicked');
+                }, 200);
+            }
+        
+            $.ajax({
+                url: '/like/' + index, // Backend route for liking a post
+                type: 'POST', // HTTP method
+                success: function(data) {
+                    console.log("Success:", data); // Log response from server
+                    // Update the like count without refreshing the page
+                    var likeCountSpan = button.siblings('.like-count');
+                    likeCountSpan.text(data.likes); // Update like count in UI
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error); // Log any errors
+                }
+            });
+        });
+    }
+
+
+    // Check if event listeners are already attached
+   
+        // Call the function to attach event listeners when the document is ready
+        $(document).ready(function() {
+            attachLikeButtonListener();
+            console.log(attachLikeButtonListener())
+        });
+    </script>
+</body>
+</html>
