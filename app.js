@@ -75,7 +75,11 @@ passport.use(new GoogleStrategy({
   }
 ));
 app.get("/",async(req,res)=>{
-  res.render("home")
+   try{
+    res.render("home")
+  }catch(err){
+    console.log(err,"not working")
+  }
 })
 
 app.get('/dashboard', async (req, res) => {
