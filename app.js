@@ -62,7 +62,7 @@ passport.deserializeUser(function(user, cb) {
 passport.use(new GoogleStrategy({
     clientID:process.env.CLIENT_ID,
     clientSecret:process.env.CLIENT_SECRET
-    callbackURL: "https://liberty-13s5f36en-mcrs-projects-e321b162.vercel.app/auth/google/secrets"
+    callbackURL: "https://liberty-five.vercel.app/auth/google/secrets"
   },
   function(accessToken, refreshToken, profile, done) {
     
