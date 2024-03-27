@@ -28,7 +28,7 @@ app.use(session({
 }));
 
 mongoose.connect(process.env.DBHOST);
-//mongodb+srv://mcr:sudhi143@cluster0.fwmzs9o.mongodb.net//
+
 
 const UserSchema = new mongoose.Schema({
     googleId: String,
@@ -62,7 +62,7 @@ passport.deserializeUser(function(user, cb) {
 passport.use(new GoogleStrategy({
     clientID:"141250273382-7esru0o326r8ln4k5jiquge17dmr0rbq.apps.googleusercontent.com",
     clientSecret:"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",
-    callbackURL: "http://localhost:3000/auth/google/secrets"
+    callbackURL: "https://liberty-13s5f36en-mcrs-projects-e321b162.vercel.app/auth/google/secrets"
   },
   function(accessToken, refreshToken, profile, done) {
     
