@@ -252,5 +252,5 @@ app.get("/logout",(req,res)=>{
 
 let PORT=process.env.PORT
 app.listen(PORT, function() {
-    console.log('Server started on port 4000');
+    console.log('Server started on port 3000');
 });
