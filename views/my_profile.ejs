@@ -85,26 +85,7 @@
       });
 
       // Attach event listener for like buttons
-      function attachLikeButtonListener() {
-        $('.like-btn').off('click'); // Remove previous event listeners to avoid duplication
-        $('.like-btn').on('click', function() {
-          var button = $(this);
-          var index = button.data('index');
-
-          $.ajax({
-            url: '/like/' + index, // Backend route for liking a post
-            type: 'POST', // HTTP method
-            success: function(data) {
-              console.log("Success:", data); // Log response from server
-              // Update the like count without refreshing the page
-              button.siblings('.like-count').text(data.likes);
-            },
-            error: function(xhr, status, error) {
-              console.error('Error:', error); // Log any errors
-            }
-          });
-        });
-      }
+      
 
       // By default, render the dashboard content when the page loads
       renderDashboardContent();
