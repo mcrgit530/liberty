@@ -192,7 +192,7 @@ app.get('/delete/:index',  async(req, res) => {
           function liked(likedByUser){
             if (!likedByUser) {
               // User is liking the secret
-              updatedLikes = currentLikes + 1;
+              updatedLikes = currentLikes + (0.5);
               updateQuery = { $addToSet: { 'secretArray.$.ids': googleId }, $set: { 'secretArray.$.likes': updatedLikes } };
               return updateQuery;
 
@@ -200,7 +200,7 @@ app.get('/delete/:index',  async(req, res) => {
             
             
               // User is unliking the secret
-              updatedLikes = currentLikes - 1;
+              updatedLikes = currentLikes - (0.5);
               updateQuery = { $pull: { 'secretArray.$.ids': googleId }, $set: { 'secretArray.$.likes': updatedLikes } };
               return updateQuery;
           }
