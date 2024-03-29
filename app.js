@@ -8,6 +8,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const findOrCreate = require('mongoose-findorcreate');
+const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
 
 
@@ -226,7 +227,7 @@ app.get('/delete/:index',  async(req, res) => {
 
 
   
-app.get('/my_profile',async(req,res)=>{
+app.get('/my_profile',ensureLoggedIn('/auth/google'),async(req,res)=>{
   res.render("my_profile")
 });
 
