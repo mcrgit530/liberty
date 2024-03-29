@@ -67,7 +67,7 @@ passport.use(new GoogleStrategy({
   function(accessToken, refreshToken, profile, done) {
     
     
-    // Search for the user by Google profile ID
+    
     User.findOrCreate({ googleId: profile.id}, function (err, user) {
       
  
@@ -86,25 +86,23 @@ app.get("/",async(req,res)=>{
 
 app.get('/dashboard', async (req, res) => {
   try {
-    // Fetch all users from the database
     const users = await User.find({});
     
-    // Array to storxe all secrets from every Gmail
+    
     let allSecrets = [];
 
-    // Iterate over each user
+    
     for (const user of users) {
-      // Sort the user's secrets by time in descending order
+      
       const sortedSecrets = user.secretArray.sort((a, b) => b.time - a.time);
       
-      // Concatenate the sorted secrets to the allSecrets array
+  
       allSecrets = allSecrets.concat(sortedSecrets);
     }
 
-    // Sort all secrets from every Gmail by time in descending order
     allSecrets.sort((a, b) => b.time - a.time);
     console.log("home")
-    // Render the secrets page and pass the sorted secrets
+  
       res.render('dashboard', { secrets: allSecrets,googleId:req.session.googleId });
   } catch (err) {
     console.error(err);
@@ -118,7 +116,7 @@ app.get('/auth/google',
   app.get('/auth/google/secrets',
   passport.authenticate('google', { failureRedirect: '/' }),(req,res)=>{
     req.session.googleId=req.user.googleId;
-    console.log(req.session.googleId)
+    
     res.redirect('/my_profile')
   });
 
@@ -138,8 +136,8 @@ app.post("/submit",async(req,res)=>{
         .then((err)=>{
             console.log(err)
         })
-      console.log("pushed hard core");
-      res.redirect("/submit")
+      
+      res.redirect("/my_profile")
     })
   })
  
@@ -191,7 +189,7 @@ app.get('/delete/:index',  async(req, res) => {
             let updateQuery = {};
           function liked(likedByUser){
             if (!likedByUser) {
-              // User is liking the secret
+              
               updatedLikes = currentLikes + 1;
               updateQuery = { $addToSet: { 'secretArray.$.ids': googleId }, $set: { 'secretArray.$.likes': updatedLikes } };
               return updateQuery;
@@ -199,14 +197,14 @@ app.get('/delete/:index',  async(req, res) => {
           }
             
             
-              // User is unliking the secret
+              
               updatedLikes = currentLikes - 1;
               updateQuery = { $pull: { 'secretArray.$.ids': googleId }, $set: { 'secretArray.$.likes': updatedLikes } };
               return updateQuery;
           }
             var updatedId = liked(likedByUser)
             console.log(updatedId)
-            // Update the secret's likes and likedByUser array in the database
+            
             await User.findOneAndUpdate(
                 { 'secretArray.index': index },
                 updatedId,{new:true}
@@ -214,7 +212,7 @@ app.get('/delete/:index',  async(req, res) => {
             );
             
 
-            // Send the updated like count to the client
+            
             res.json({ success: true, likes: updatedLikes });
         } else {
             res.status(404).json({ success: false, message: 'Secret not found' });
