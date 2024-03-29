@@ -50,46 +50,42 @@
         $.get('/dashboard', function(data) {
           $('#content-area').html(data);
           // Re-attach event listeners after rendering new content
-          attachLikeButtonListener();
         });
       };
-
+  
       // Function to fetch and render my_posts content
       const renderMyPostsContent = () => {
         $.get('/my_posts', function(data) {
           $('#content-area').html(data);
           // Re-attach event listeners after rendering new content
-          attachLikeButtonListener();
         });
       };
-
+  
       // Attach event listeners to the Dashboard, My Posts, Submit a Secret, and Logout buttons
       $('#dashboard-btn').click(function(event) {
         event.preventDefault(); // Prevent default behavior
         renderDashboardContent(); // Render dashboard content
       });
-
+  
       $('#my-posts-btn').click(function(event) {
         event.preventDefault(); // Prevent default behavior
         renderMyPostsContent(); // Render my_posts content
       });
-
+  
       $('#submit-btn').click(function(event) {
         event.preventDefault(); // Prevent default behavior
         window.location.href = "/submit"; // Redirect to submit page
       });
-
+  
       $('#logout-btn').click(function(event) {
         event.preventDefault(); // Prevent default behavior
         window.location.href = "/logout"; // Redirect to logout route
       });
-
-      // Attach event listener for like buttons
-      
-
+  
       // By default, render the dashboard content when the page loads
       renderDashboardContent();
     });
   </script>
+  
 </body>
 </html>
