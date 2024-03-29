@@ -243,9 +243,16 @@ app.get('/my_profile',async(req,res)=>{
   res.redirect("/")
  })   
     
-app.get("/logout",(req,res)=>{
-  res.redirect("/");
-})
+app.get('/logout', (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      console.error('Error destroying session:', err);
+      return res.sendStatus(500);
+    }
+    res.redirect('/'); 
+  });
+});
+
 
 
 let PORT=process.env.PORT
