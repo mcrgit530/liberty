@@ -235,7 +235,7 @@ app.get('/my_profile',ensureLoggedIn('/auth/google'),async(req,res)=>{
 
 
     
-  app.get('/submit', async(req, res)=> {
+  app.get('/submit',ensureLoggedIn('/auth/google'), async(req, res)=> {
   
     res.render("submit");
   });   
