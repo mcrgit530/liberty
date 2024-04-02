@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>my profile</title>
-    <!-- Include Tailwind CSS -->
+
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-      /* Custom styles to position the fixed bottom links */
       .fixed-bottom {
         position: fixed;
         bottom: 20px;
@@ -15,74 +14,60 @@
         transform: translateX(-50%);
       }
     </style>
-    <!-- Include jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-<body class="bg-gray-100 font-sans text-gray-800"> <!-- Applying font family and text color -->
+<body class="bg-gray-100 font-sans text-gray-800"> 
   <div class="container mx-auto px-4">
-    <!-- Submit a Secret button -->
-    <button id="submit-btn" class="text-blue-500 font-bold">Submit a Secret</button> <!-- Applying font weight and color -->
+    <button id="submit-btn" class="text-blue-500 font-bold">Submit a Secret</button> 
     <br><hr>
-    <!-- Logout button -->
-    <button id="logout-btn" class="text-red-500 font-bold">Logout</button> <!-- Applying font weight and color -->
+    <button id="logout-btn" class="text-red-500 font-bold">Logout</button> 
     <br><hr>
     
 
-    <!-- Content area -->
     <div id="content-area" class="mb-24">
  
     </div>
 
-    <!-- Fixed bottom links -->
     <div class="fixed-bottom">
-      <!-- Dashboard button -->
-      <button id="dashboard-btn" class="mr-4 text-blue-500 font-bold">Dashboard</button> <!-- Applying font weight and color -->
-      <!-- My Posts button -->
-      <button id="my-posts-btn" class="text-blue-500 font-bold">My Posts</button> <!-- Applying font weight and color -->
+      <button id="dashboard-btn" class="mr-4 text-blue-500 font-bold">Dashboard</button>
+      <button id="my-posts-btn" class="text-blue-500 font-bold">My Posts</button> 
     </div>
   </div>
 
-  <!-- Frontend JavaScript -->
   <script>
     $(document).ready(function() {
-      // Function to fetch and render dashboard content
       const renderDashboardContent = () => {
         $.get('/dashboard', function(data) {
           $('#content-area').html(data);
-          // Re-attach event listeners after rendering new content
         });
       };
   
-      // Function to fetch and render my_posts content
       const renderMyPostsContent = () => {
         $.get('/my_posts', function(data) {
           $('#content-area').html(data);
-          // Re-attach event listeners after rendering new content
         });
       };
   
-      // Attach event listeners to the Dashboard, My Posts, Submit a Secret, and Logout buttons
       $('#dashboard-btn').click(function(event) {
-        event.preventDefault(); // Prevent default behavior
-        renderDashboardContent(); // Render dashboard content
+        event.preventDefault(); 
+        renderDashboardContent();
       });
   
       $('#my-posts-btn').click(function(event) {
-        event.preventDefault(); // Prevent default behavior
-        renderMyPostsContent(); // Render my_posts content
+        event.preventDefault();
+        renderMyPostsContent(); 
       });
   
       $('#submit-btn').click(function(event) {
-        event.preventDefault(); // Prevent default behavior
-        window.location.href = "/submit"; // Redirect to submit page
+        event.preventDefault(); 
+        window.location.href = "/submit"; 
       });
   
       $('#logout-btn').click(function(event) {
-        event.preventDefault(); // Prevent default behavior
-        window.location.href = "/logout"; // Redirect to logout route
+        event.preventDefault(); 
+        window.location.href = "/logout"; 
       });
   
-      // By default, render the dashboard content when the page loads
       renderDashboardContent();
     });
   </script>
