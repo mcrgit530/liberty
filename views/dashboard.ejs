@@ -37,7 +37,7 @@
                 <div class="flex items-center justify-between mb-2"> <!-- Aligning text and time -->
                     <div>
                         <strong class="text-lg font-semibold"><%= secret.text %></strong> <!-- Increased font weight -->
-                        <em class="text-sm text-gray-600 block"><%= secret.time.toLocaleString('en-IN') %></em> <!-- Positioning time below text -->
+                        <em class="text-sm text-gray-600 block"><%= secret.time.toLocaleString('en-IN',{ timeZone: 'Asia/Kolkata' }) %></em> <!-- Positioning time below text -->
                     </div>
                     <div>
                         <!-- Use data attributes to store the index -->
