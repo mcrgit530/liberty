@@ -22,6 +22,15 @@
             font-size: 1.5rem;
             margin-right: 5px;
         }
+
+        /* Style for showing name on hover */
+        #submit-btn:hover .name {
+            display: inline;
+        }
+
+        .name {
+            display: none;
+        }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -29,8 +38,8 @@
     <div class="container mx-auto px-4">
         <!-- Icon for Submit a Secret -->
         <button id="submit-btn" class="text-blue-500 font-bold flex items-center">
-            <i class="icon far fa-envelope"></i> <!-- Icon -->
-            <span class="hidden md:inline">Submit a Secret</span> <!-- Hidden on small screens -->
+            <i class="icon far fa-comment"></i> <!-- Icon -->
+            <span class="name hidden md:inline">John Doe</span> <!-- Hidden by default -->
         </button> 
         <br><hr>
         <button id="logout-btn" class="text-red-500 font-bold">Logout</button> 
