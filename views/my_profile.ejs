@@ -56,6 +56,15 @@
         #logout-btn:hover {
             background-color: #DC2626; /* Darker red on hover */
         }
+
+        /* Tailwind Custom Styles */
+        .dashboard-bg {
+            background-color: #f3f4f6; /* Light grey background color */
+        }
+
+        .posts-bg {
+            background-color: #e5e7eb; /* Lighter grey background color */
+        }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -73,8 +82,8 @@
         <div id="content-area" class="mb-24"></div>
 
         <div class="fixed-bottom">
-            <button id="dashboard-btn" class="mr-4 text-blue-500 font-bold">Dashboard</button>
-            <button id="my-posts-btn" class="text-blue-500 font-bold">My Posts</button> 
+            <button id="dashboard-btn" class="mr-4 text-blue-500 font-bold dashboard-bg">Dashboard</button>
+            <button id="my-posts-btn" class="text-blue-500 font-bold posts-bg">My Posts</button> 
         </div>
     </div>
 
