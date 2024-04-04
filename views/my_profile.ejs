@@ -9,14 +9,28 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <!-- Include Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <style>
-        .fixed-bottom {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body class="bg-gray-100 font-sans text-gray-800 relative"> 
+    <div class="container mx-auto px-4">
+        <button id="submit-btn" title="Raise a Complaint" class="text-blue-500 font-bold flex items-center">
+            <i class="icon far fa-comment"></i>
+            <span class="name hidden md:inline">Raise a Complaint</span>
+        </button> 
 
+        <button id="logout-btn" class="text-white font-bold absolute top-4 right-4">Logout</button> 
+
+        <br><hr>
+
+        <div id="content-area" class="mb-24"></div>
+    </div>
+
+    <div class="fixed bottom-0 left-0 w-full bg-gray-200 flex justify-center py-6">
+        <button id="dashboard-btn" class="mr-4 text-blue-500 font-bold">Dashboard</button>
+        <button id="my-posts-btn" class="text-blue-500 font-bold">My Posts</button> 
+    </div>
+
+    <style>
         .icon {
             font-size: 1.5rem;
             margin-right: 5px;
@@ -43,9 +57,6 @@
         }
 
         #logout-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
             background-color: #EF4444; /* Red background color */
             color: white; /* White text color */
             padding: 8px 16px; /* Padding */
@@ -56,36 +67,7 @@
         #logout-btn:hover {
             background-color: #DC2626; /* Darker red on hover */
         }
-
-        /* Tailwind Custom Styles */
-        .dashboard-bg {
-            background-color: #f3f4f6; /* Light grey background color */
-        }
-
-        .posts-bg {
-            background-color: #e5e7eb; /* Lighter grey background color */
-        }
     </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
-<body class="bg-gray-100 font-sans text-gray-800"> 
-    <div class="container mx-auto px-4">
-        <button id="submit-btn" title ="Raise a Complaint" class="text-blue-500 font-bold flex items-center">
-            <i class="icon far fa-comment"></i>
-            <span class="name hidden md:inline">Raise a Complaint</span>
-        </button> 
-
-        <button id="logout-btn" class="text-white font-bold">Logout</button> 
-
-        <br><hr>
-
-        <div id="content-area" class="mb-24"></div>
-
-        <div class="fixed-bottom">
-            <button id="dashboard-btn" class="mr-4 text-blue-500 font-bold dashboard-bg">Dashboard</button>
-            <button id="my-posts-btn" class="text-blue-500 font-bold posts-bg">My Posts</button> 
-        </div>
-    </div>
 
     <script>
         $(document).ready(function() {
