@@ -39,7 +39,7 @@
                         <em class="text-sm text-gray-600 block"><%= secret.time.toLocaleString('en-IN',{ timeZone: 'Asia/Kolkata' }) %></em> 
                     </div>
                     <div>
-                        <button class="like-btn focus:outline-none <%= secret.ids.includes(googleId) ? 'red-heart' : '' %>" data-index="<%= secret.index %>"></button> 
+                        <button class="like-btn focus:outline-none <%= secret.ids.includes(googleId) ? 'red-heart' : '' %>" data-index="<%= secret.index %>" title="like"></button> 
                         
                         <span class="like-count ml-2"><%= secret.likes %></span>
                     </div>
