@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>my profile</title>
 
+    <!-- Include Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    
+    <!-- Include Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
         .fixed-bottom {
@@ -16,13 +17,11 @@
             transform: translateX(-50%);
         }
 
-       
         .icon {
             font-size: 1.5rem;
             margin-right: 5px;
         }
 
-        
         #submit-btn:hover .name {
             display: inline;
         }
@@ -30,19 +29,25 @@
         .name {
             display: none;
         }
+
+        #logout-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body class="bg-gray-100 font-sans text-gray-800"> 
     <div class="container mx-auto px-4">
-        <!-- Icon for Submit a Secret -->
         <button id="submit-btn" class="text-blue-500 font-bold flex items-center">
-            <i class="icon far fa-comment"></i> <!-- Icon -->
-            <span class="name hidden md:inline">raise a complaint</span>
+            <i class="icon far fa-comment"></i>
+            <span class="name hidden md:inline">John Doe</span>
         </button> 
-        <br> <br>
+
         <button id="logout-btn" class="text-red-500 font-bold">Logout</button> 
-        
+
+        <br><hr>
 
         <div id="content-area" class="mb-24"></div>
 
