@@ -34,6 +34,15 @@
             position: absolute;
             top: 10px;
             right: 10px;
+            background-color: #EF4444; /* Red background color */
+            color: white; /* White text color */
+            padding: 8px 16px; /* Padding */
+            border-radius: 999px; /* Rounded corners */
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+
+        #logout-btn:hover {
+            background-color: #DC2626; /* Darker red on hover */
         }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -45,7 +54,7 @@
             <span class="name hidden md:inline">John Doe</span>
         </button> 
 
-        <button id="logout-btn" class="text-red-500 font-bold">Logout</button> 
+        <button id="logout-btn" class="text-white font-bold">Logout</button> 
 
         <br><hr>
 
