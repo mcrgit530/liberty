@@ -13,14 +13,29 @@
         left: 50%;
         transform: translateX(-50%);
       }
+     
+      .custom-btn {
+        padding: 8px 16px;
+        border-radius: 9999px; 
+      }
+      .submit-btn {
+        background-color: #4CAF50; 
+        color: white;
+      }
+      .logout-btn {
+        background-color: #f44336;
+        color: white;
+      }
     </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body class="bg-gray-100 font-sans text-gray-800"> 
   <div class="container mx-auto px-4">
-    <button id="submit-btn" class="text-blue-500 font-bold">Submit a Secret</button> 
+    <!-- Submit a Secret button -->
+    <button id="submit-btn" class="custom-btn submit-btn font-bold">Submit a Secret</button>
     <br><hr>
-    <button id="logout-btn" class="text-red-500 font-bold">Logout</button> 
+    <!-- Logout button -->
+    <button id="logout-btn" class="custom-btn logout-btn font-bold">Logout</button> 
     <br><hr>
     
 
